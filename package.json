@@ -1,5 +1,6 @@
 {
   "name": "hack-a-pit",
+  "homepage": "https://clear-route.github.io/hack-a-pit",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
