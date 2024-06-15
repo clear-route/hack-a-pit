@@ -1,0 +1,16 @@
+.race-track {
+  position: relative;
+  width: 80%;
+  height: 200px;
+  margin: 20px auto;
+  background-color: #eee;
+}
+
+.track-line {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background-color: black;
+}
