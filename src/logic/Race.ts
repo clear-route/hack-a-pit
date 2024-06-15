@@ -1,9 +1,8 @@
 export class Race {
   private static instance: Race;
-
   public raceDate: Date = new Date();
   private stintMinutes: number = 0;
-  private lapTimes: number[] = [];
+  private lapTimes: number;
   private trackLength: number = 0;
   private milesThroughLap: number = 0;
 
@@ -37,6 +36,7 @@ export class Race {
   public getStintMinutes(): number {
     return this.stintMinutes;
   }
+
   public setStintMinutes(value: number) {
     this.stintMinutes = value;
   }
@@ -45,10 +45,10 @@ export class Race {
     return this.maxHoursPerDriver;
   }
 
-  public calculateStintTime(
-    totalRaceTime: number,
-    numberOfDrivers: number
-  ): number {
-    return totalRaceTime / numberOfDrivers;
-  }
+  //   public calculateStintTime(
+  //     totalRaceTime: number,
+  //     numberOfDrivers: number
+  //   ): number {
+  //     return totalRaceTime / numberOfDrivers;
+  //   }
 }
