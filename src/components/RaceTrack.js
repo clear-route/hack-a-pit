@@ -14,7 +14,7 @@ import {
   CardContent,
 } from "@mui/material";
 
-import currentStatus from "../data/data.json"
+import currentStatus from "../data/data"
 import "../css/RaceTrack.css";
 
 
@@ -36,7 +36,6 @@ const TimelineItem = ({ time, data }) => {
     </Card>
   );
 };
-
 
 const RaceTrack = () => {
   return (

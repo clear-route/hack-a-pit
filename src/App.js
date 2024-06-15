@@ -1,8 +1,9 @@
-import React from "react";
+import React, { useState, useEffect } from 'react';
 import RaceTrack from "./components/RaceTrack";
-import { ThemeProvider, createTheme, CssBaseline } from "@mui/material";
+import { ThemeProvider, createTheme, CssBaseline, Box } from "@mui/material";
 import { Container, Typography } from "@mui/material";
 import "./App.css";
+import CurrentStatus from "./components/CurrentStatus";
 
 const theme = createTheme({
   palette: {
@@ -23,17 +24,46 @@ const theme = createTheme({
 });
 
 function App() {
+  const [currentTime, setCurrentTime] = useState('');
+  const [currentStatus, setCurrentStatus] = useState({});
+
+  const handleTimeHover = (time) => {
+    setCurrentTime(time);
+  };
+
+  // Update the real-time clock
+  useEffect(() => {
+    const updateClock = () => {
+      const now = new Date();
+      setCurrentTime(now.toLocaleTimeString());
+    };
+    const interval = setInterval(updateClock, 1000);
+    return () => clearInterval(interval);
+  }, []);
+
+
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
       <Container>
-        <header className="App-header">
-          <Typography variant="h1" component="h1">
-            Pit Ops
-          </Typography>
-        </header>
-        <RaceTrack />
-      </Container>
+      <Box
+        sx={{
+          display: 'flex',
+          justifyContent: 'space-between',
+          alignItems: 'center',
+          marginBottom: 2,
+        }}
+      >
+        <Typography variant="h4" gutterBottom>
+          Pit Ops
+        </Typography>
+        <Typography variant="h6" gutterBottom>
+          Time: {currentTime}
+        </Typography>
+      </Box>
+      <CurrentStatus/>
+      <RaceTrack />
+    </Container>
     </ThemeProvider>
   );
 }
