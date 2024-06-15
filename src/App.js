@@ -29,7 +29,7 @@ function App() {
       <Container>
         <header className="App-header">
           <Typography variant="h1" component="h1">
-            bogbrush_2024
+            Pit Ops
           </Typography>
         </header>
         <RaceTrack />
