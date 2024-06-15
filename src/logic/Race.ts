@@ -1,26 +1,50 @@
-class Race {
-  constructor(name: string, maxHoursPerDriver: number, maxNumberOfChangedTyres: number) {
+export class Race {
+  private static instance: Race;
+
+  public raceDate: Date = new Date();
+  private stintMinutes: number = 0;
+  private lapTimes: number[] = [];
+  private trackLength: number = 0;
+  private milesThroughLap: number = 0;
+
+  // Private Constructor for Singleton
+  private constructor(
+    private name: string,
+    private maxHoursPerDriver: number,
+    private maxNumberOfChangedTyres: number
+  ) {
     this.name = name;
     this.maxHoursPerDriver = maxHoursPerDriver;
     this.maxNumberOfChangedTyres = maxNumberOfChangedTyres;
   }
 
-  name: string;
-  maxHoursPerDriver
-  raceDate: Date = new Date();
+  // Get Singleton Instance
+  public static getInstance(
+    name: string,
+    maxHoursPerDriver: number,
+    maxNumberOfChangedTyres: number
+  ): Race {
+    if (!Race.instance) {
+      Race.instance = new Race(
+        name,
+        maxHoursPerDriver,
+        maxNumberOfChangedTyres
+      );
+    }
+    return Race.instance;
+  }
 
-  name: string;
-  maxHoursPerDriver: number;
-  raceDate: Date = new Date();
+  public getStintMinutes(): number {
+    return this.stintMinutes;
+  }
+  public setStintMinutes(value: number) {
+    this.stintMinutes = value;
+  }
 
-  stint: number = 0;
-  lapTimes: number[] = [];
-  trackLength: number = 0;
-  milesThroughLap: number = 0;
-
-  calculateStintTime(totalRaceTime: number, numberOfDrivers: number): number {
+  public calculateStintTime(
+    totalRaceTime: number,
+    numberOfDrivers: number
+  ): number {
     return totalRaceTime / numberOfDrivers;
   }
 }
-
-
