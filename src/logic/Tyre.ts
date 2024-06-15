@@ -1,20 +1,20 @@
 export class Tyre {
+  private healthLeft: number = 100;
+  private newUseTimeStamp: Date = new Date();
+
   constructor(private type: string) {
     this.type = type;
   }
 
-  private milesLeft: number = 0;
-  private newUseTimeStamp: Date = new Date();
-}
+  public getType(): string {
+    return this.type;
+  }
 
-function getType(): string {
-  return this.type;
-}
+  public getHealthLeft(): number {
+    return this.healthLeft;
+  }
 
-function getMilesLeft(): string {
-  return this.milesLeft;
-}
-
-function getNewUseTimeStamp(): Date {
-  return this.newUseTimeStamp;
+  public getNewUseTimeStamp(): Date {
+    return this.newUseTimeStamp;
+  }
 }

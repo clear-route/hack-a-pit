@@ -52,3 +52,13 @@ car1.setLastServiceTimestamp();
 // Set the health left
 
 // Upon
+
+//Change of Driver will happen because either the driver has reached the maxHoursPerDriver or has ran out of Health
+// previousDriver: Driver;
+
+// public changeDriver(currentDriver: Driver, driversList: Driver[]): Driver {
+//   previousDriver = previousDriver == undefined ? currentDriver : previousDriver;
+//   let index = driversList.indexOf(currentDriver);
+//   let nextDriver = Math.max(driversList[index + 1];
+//   return nextDriver;
+// }
