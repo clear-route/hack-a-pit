@@ -3,10 +3,23 @@ import { Driver } from "./Driver";
 import assert from "assert";
 
 export class Car {
-  constructor(private name: string, private driverList: Driver[]) {}
-
   private fuelLeft: number = 100;
-  private currentDriver: Driver;
+  private lastServiceTimestamp: number = Date.now();
+
+  private tyresSet: Tyre[] = [];
+
+  constructor(
+    private carName: string,
+    private driversList: Driver[],
+    private currentDriver: Driver
+  ) {}
+
+  public getLastServiceTimestamp(): number {
+    return this.lastServiceTimestamp;
+  }
+  public setLastServiceTimestamp(): void {
+    this.lastServiceTimestamp = Date.now();
+  }
 
   public setCurrentDriver(driver: Driver): void {
     this.currentDriver = driver;
@@ -25,9 +38,7 @@ export class Car {
     this.fuelLeft = this.fuelLeft - amount;
   }
 
-  private tyresSet: Tyre[] = [];
-
-  public setTyresSet(): void {
+  public setNewTyresSet(): void {
     this.tyresSet = [
       new Tyre("soft1"),
       new Tyre("soft2"),
