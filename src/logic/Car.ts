@@ -1,9 +1,15 @@
 import { Tyre } from "./Tyre";
 
 class Car {
-  constructor(public name: string) {}
+  constructor(private name: string,  private driversList: []) {
+    this.driversList = driversList;
+  }
+  fuelLeft: number = 100;
 
-  fuelLeft: number = 0;
+
   lastServiceTimestamp: number = 0;
   tyresSet: Tyre = [];
+
+
 }
+
