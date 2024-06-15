@@ -17,4 +17,9 @@ export class Tyre {
   public getNewUseTimeStamp(): Date {
     return this.newUseTimeStamp;
   }
+
+  public reduceTyreHealthBy(amount: number): void {
+    this.healthLeft =
+      this.healthLeft - amount >= 0 ? this.healthLeft - amount : 0;
+  }
 }
