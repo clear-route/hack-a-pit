@@ -1,0 +1,13 @@
+.pit-stop {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.pit-stop-type,
+.pit-stop-time {
+  color: white;
+}

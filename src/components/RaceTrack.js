@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import PitStop from "./PitStop";
-import "./RaceTrack.css";
+import { Box, Paper } from "@mui/material";
+import "../css/RaceTrack.css";
 
 const RaceTrack = () => {
   const [pitStops, setPitStops] = useState([
@@ -17,8 +18,8 @@ const RaceTrack = () => {
   };
 
   return (
-    <div className="race-track">
-      <div className="track-line" />
+    <Paper elevation={3} className="race-track">
+      <Box className="track-line" />
       {pitStops.map((pitStop) => (
         <PitStop
           key={pitStop.id}
@@ -26,7 +27,7 @@ const RaceTrack = () => {
           onDragStop={handleDragStop}
         />
       ))}
-    </div>
+    </Paper>
   );
 };
 
