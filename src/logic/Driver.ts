@@ -1,5 +1,5 @@
 export class Driver {
-  constructor(private name: string, private timeToExitRace: number) {
+  constructor(private name: string, private timeToExitRaceInMiutes: number) {
     this.name = name;
   }
 
@@ -7,8 +7,8 @@ export class Driver {
 
   //TODO: Who holds this data? Race "rules" is what decides the max race time
 
-  public getTimeToExitRace(): number {
-    return this.timeToExitRace;
+  public getTimeToExitRaceInMiutes(): number {
+    return this.timeToExitRaceInMiutes;
   }
 
   public getHealthLeft(): number {

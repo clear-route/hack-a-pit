@@ -41,6 +41,10 @@ export class Race {
     this.stintMinutes = value;
   }
 
+  public getmaxHoursPerDriver(): number {
+    return this.maxHoursPerDriver;
+  }
+
   public calculateStintTime(
     totalRaceTime: number,
     numberOfDrivers: number
