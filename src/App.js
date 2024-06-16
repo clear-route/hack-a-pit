@@ -1,11 +1,10 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import RaceTrack from "./components/RaceTrack";
-import { ThemeProvider, createTheme, CssBaseline, Box } from "@mui/material";
-import { Container, Typography } from "@mui/material";
+import { ThemeProvider, createTheme, CssBaseline, Box, Container, Typography } from "@mui/material";
 import "./App.css";
 import CurrentStatus from "./components/CurrentStatus";
 import PitStopGraph from './components/PitStopGraph';
-import data from "./data/data"
+import data from "./data/data";
 
 const theme = createTheme({
   palette: {
@@ -25,36 +24,46 @@ const theme = createTheme({
   },
 });
 
-
-const calculateRemainingTime = (endTime) => {
+const calculateTime = (startTime, endTime) => {
   const now = new Date();
-  const timeDiff = endTime - now;
-  const hours = Math.floor((timeDiff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-  const minutes = Math.floor((timeDiff % (1000 * 60 * 60)) / (1000 * 60));
-  const seconds = Math.floor((timeDiff % (1000 * 60)) / 1000);
-  return { hours, minutes, seconds };
+  const remainingTimeMs = endTime - now;
+  const timeThroughMs = now - startTime;
+
+  const remainingTime = {
+    hours: Math.floor((remainingTimeMs % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)),
+    minutes: Math.floor((remainingTimeMs % (1000 * 60 * 60)) / (1000 * 60)),
+    seconds: Math.floor((remainingTimeMs % (1000 * 60)) / 1000),
+  };
+
+  const timeThrough = Math.floor(timeThroughMs / (1000 * 60)); // Minutes through the race
+
+  return { remainingTime, timeThrough };
 };
 
-
 function App() {
+  const now = new Date();
+  const raceStartTime = useRef(new Date(now.getTime() - 30 * 60 * 1000)); // 30 minutes ago
+  const raceEndTime = useRef(new Date(raceStartTime.current.getTime() + 24 * 60 * 60 * 1000)); // 24 hours from start time
+
   const [currentTime, setCurrentTime] = useState('');
-
   const [remainingTime, setRemainingTime] = useState({ hours: 24, minutes: 0, seconds: 0 });
-  const raceEndTime = new Date(Date.now() + 24 * 60 * 60 * 1000); // 24 hours from now
+  const [timeThrough, setTimeThrough] = useState(0);
 
-  // Update the real-time clock
   useEffect(() => {
-    const updateClock = () => {
+    const updateClockAndTime = () => {
       const now = new Date();
       setCurrentTime(now.toLocaleTimeString());
-      setRemainingTime(calculateRemainingTime(raceEndTime));
+
+      const { remainingTime, timeThrough } = calculateTime(raceStartTime.current, raceEndTime.current);
+      setRemainingTime(remainingTime);
+      setTimeThrough(timeThrough);
     };
 
+    updateClockAndTime(); // Initialize immediately
 
-    const interval = setInterval(updateClock, 1000);
+    const interval = setInterval(updateClockAndTime, 1000);
     return () => clearInterval(interval);
-  }, []);
-
+  }, []); // Empty dependency array to ensure this effect runs only once
 
   return (
     <ThemeProvider theme={theme}>
@@ -74,9 +83,11 @@ function App() {
           <Typography variant="h6" gutterBottom>
             Current Time: {currentTime}
           </Typography>
-
           <Typography variant="h6" gutterBottom>
             Remaining Time: {remainingTime.hours}h {remainingTime.minutes}m {remainingTime.seconds}s
+          </Typography>
+          <Typography variant="h6" gutterBottom>
+            Time Through: {timeThrough} minutes
           </Typography>
         </Box>
 
