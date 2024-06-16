@@ -38,17 +38,18 @@ const calculateRemainingTime = (endTime) => {
 
 function App() {
   const [currentTime, setCurrentTime] = useState('');
+
   const [remainingTime, setRemainingTime] = useState({ hours: 24, minutes: 0, seconds: 0 });
-  const raceEndTime = new Date(Date.now() + (24 * 60 * 60 * 1000) - 30); // 24 hours from now
+  const raceEndTime = new Date(Date.now() + 24 * 60 * 60 * 1000); // 24 hours from now
 
   // Update the real-time clock
   useEffect(() => {
     const updateClock = () => {
       const now = new Date();
       setCurrentTime(now.toLocaleTimeString());
+      setRemainingTime(calculateRemainingTime(raceEndTime));
     };
 
-    setRemainingTime(calculateRemainingTime(raceEndTime));
 
     const interval = setInterval(updateClock, 1000);
     return () => clearInterval(interval);
