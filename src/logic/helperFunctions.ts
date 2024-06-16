@@ -12,7 +12,7 @@ export function swapDriver(
 ): Driver {
   driversList.forEach((element) => {
     while (element !== currentDriver) {
-      element.upHealthLeftBy(lastStintLength / 10); //TODO: Refine Logic: health goes up as per rested time (lastStintLength of latest stint runtime)
+      element.upHealthBy(lastStintLength / 10); //TODO: Refine Logic: health goes up as per rested time (lastStintLength of latest stint runtime)
     }
   });
 
