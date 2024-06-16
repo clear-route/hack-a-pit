@@ -2,27 +2,26 @@ import { Driver } from "./Driver";
 import { Car } from "./Car";
 import { Race } from "./race";
 
-// Carries out the logic of the simulation
-
-// // The simulation
-// constructor() {
-//   this.simulation = new Simulation();
-// }
-// // Run the simulation
-// run() {
-//   this.simulation.run();
-// }
-
 // Set Race
-let currentRace: Race = Race.getInstance("Le Mans", 240, 56);
+let raceName = "Le Mans";
+let maxHoursPerDriver = 240;
+let maxNumberOfChangedTyres = 56;
+let raceDuration = 60;
 
-let maxHoursPerDriver = currentRace.getmaxHoursPerDriver();
+let currentRace: Race = Race.getInstance(
+  raceName,
+  maxHoursPerDriver,
+  maxNumberOfChangedTyres,
+  raceDuration
+);
+
+let raceDriverTimeLimit = currentRace.getmaxHoursPerDriver();
 
 // setDrivers
-let driver1 = new Driver("Driver 1", maxHoursPerDriver);
-let driver2 = new Driver("Driver 2", maxHoursPerDriver);
-let driver3 = new Driver("Driver 3", maxHoursPerDriver);
-let driver4 = new Driver("Driver 4", maxHoursPerDriver);
+let driver1 = new Driver("Driver 1", raceDriverTimeLimit);
+let driver2 = new Driver("Driver 2", raceDriverTimeLimit);
+let driver3 = new Driver("Driver 3", raceDriverTimeLimit);
+let driver4 = new Driver("Driver 4", raceDriverTimeLimit);
 
 let currentDriver = driver1;
 
