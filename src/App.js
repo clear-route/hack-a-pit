@@ -97,7 +97,7 @@ function App() {
 
         <CurrentStatus currentStatus={data[`${String(currentTime.getHours()).padStart(2, '0')}:${String(currentTime.getMinutes()).padStart(2, '0')}`]} />
         <Typography variant="h5" gutterBottom>
-          Pit Stopping In
+          Pit Stopping Recommender
         </Typography>
         <RaceTrack pitStopTimes={data} />
         <Typography variant="h5" gutterBottom />
