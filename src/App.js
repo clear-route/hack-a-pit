@@ -87,7 +87,7 @@ function App() {
             Remaining Time: {remainingTime.hours}h {remainingTime.minutes}m {remainingTime.seconds}s
           </Typography>
           <Typography variant="h6" gutterBottom>
-            Time Through: {timeThrough} minutes
+            Time Elapsed: {timeThrough} minutes
           </Typography>
         </Box>
 

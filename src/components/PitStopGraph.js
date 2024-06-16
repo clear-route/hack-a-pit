@@ -2,10 +2,8 @@ import React from 'react';
 import { Line } from 'react-chartjs-2';
 import { Chart, registerables } from 'chart.js';
 import annotationPlugin from 'chartjs-plugin-annotation';
-import {
-  Box,
- 
-} from "@mui/material";
+import { Box } from "@mui/material";
+
 Chart.register(...registerables, annotationPlugin);
 
 const PitStopGraph = ({ pitStopTimes, currentTime }) => {
@@ -21,7 +19,6 @@ const PitStopGraph = ({ pitStopTimes, currentTime }) => {
   const chartData = {
     labels,
     datasets: [
-
       {
         label: 'Track Temperature (°C)',
         data: trackTemperatureData,
@@ -31,7 +28,7 @@ const PitStopGraph = ({ pitStopTimes, currentTime }) => {
       {
         label: 'Fuel Remaining (%)',
         data: fuelRemainingData,
-        borderColor: 'green',
+        borderColor: 'brown',
         fill: false,
       },
       {
@@ -65,12 +62,19 @@ const PitStopGraph = ({ pitStopTimes, currentTime }) => {
       borderColor: 'black',
       borderWidth: 2,
       label: {
-        content: 'Now',
+        display: true,
+        content: 'Elapsed Time',
         enabled: true,
         position: 'start',
-        backgroundColor: 'rgba(0, 0, 255, 0.8)', // Adjust background color for readability
-        // yAdjust: -20, // Position label above the chart area
+        backgroundColor: 'black', // Adjust background color for readability
+        yAdjust: -0, // Position label above the chart area
+        z: 1000,
+        opacity: 1.0,
+        height: 10
+        
       },
+
+      
     },
     ...Object.keys(pitStopTimes)
       .filter(time => pitStopTimes[time].shouldPitStop)
@@ -79,14 +83,18 @@ const PitStopGraph = ({ pitStopTimes, currentTime }) => {
         mode: 'vertical',
         scaleID: 'x',
         value: time,
-        borderColor: 'red',
+        borderColor: 'green',
         borderWidth: 2,
         label: {
-          content: 'Pit Stop',
+          content: 'Pit Stop Recommended',
           enabled: true,
+          display: true,
           position: 'start',
-          backgroundColor: 'rgba(255, 0, 0, 0.8)', // Adjust background color for readability
-          yAdjust: -20, // Position label above the chart area
+          backgroundColor: 'green', // Adjust background color for readability
+          yAdjust: -0, // Position label above the chart area
+          z: 1000,
+          opacity: 1.0,
+          height: 10
         },
       })),
     {
@@ -117,7 +125,6 @@ const PitStopGraph = ({ pitStopTimes, currentTime }) => {
       legend: {
         display: true,
         position: 'bottom', // Position the legend below the graph
-
       },
       annotation: {
         annotations,
@@ -134,13 +141,13 @@ const PitStopGraph = ({ pitStopTimes, currentTime }) => {
         padding: 2,
         border: '1px solid #ccc',
         borderRadius: 2,
-        marginX: 0, 
-        paddingY: 5, 
+        marginX: 0,
+        paddingY: 5,
       }}
     >
       <Line data={chartData} options={options} />
     </Box>
-  )
+  );
 };
 
 export default PitStopGraph;

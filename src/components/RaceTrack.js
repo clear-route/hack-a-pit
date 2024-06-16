@@ -90,10 +90,6 @@ const RaceTrack = () => {
                                         {data[time].reason}
                                     </Typography>
                                 )}
-                                {/* <Typography variant="body2">Temp: {data[time].trackTemperature}°C</Typography>
-                <Typography variant="body2">Stint: {data[time].stintMinutes} mins</Typography>
-                <Typography variant="body2">Fuel: {data[time].fuelRemaining}%</Typography>
-                <Typography variant="body2">Tire Wear: {data[time].tireWear}%</Typography>  */}
                             </Box>
                         </Tooltip>
                     </Grid>
