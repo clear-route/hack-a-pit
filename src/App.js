@@ -101,7 +101,7 @@ function App() {
         </Typography>
         <RaceTrack pitStopTimes={data} />
 
-        <PitStopGraph pitStopTimes={data} />
+        <PitStopGraph currentTime={currentTime} pitStopTimes={data} />
       </Container>
     </ThemeProvider>
   );
