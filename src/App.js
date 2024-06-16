@@ -35,7 +35,7 @@ const calculateTime = (startTime, endTime) => {
     seconds: Math.floor((remainingTimeMs % (1000 * 60)) / 1000),
   };
 
-  const timeThrough = Math.floor(timeThroughMs / (1000 * 60)); // Minutes through the race
+  const timeThrough = Math.floor(timeThroughMs / (1000 * 60));
 
   return { remainingTime, timeThrough };
 };
@@ -45,25 +45,25 @@ function App() {
   const raceStartTime = useRef(new Date(now.getTime() - 30 * 60 * 1000)); // 30 minutes ago
   const raceEndTime = useRef(new Date(raceStartTime.current.getTime() + 24 * 60 * 60 * 1000)); // 24 hours from start time
 
-  const [currentTime, setCurrentTime] = useState('');
+  const [currentTime, setCurrentTime] = useState(new Date());
   const [remainingTime, setRemainingTime] = useState({ hours: 24, minutes: 0, seconds: 0 });
   const [timeThrough, setTimeThrough] = useState(0);
 
   useEffect(() => {
     const updateClockAndTime = () => {
       const now = new Date();
-      setCurrentTime(now.toLocaleTimeString());
+      setCurrentTime(now);
 
       const { remainingTime, timeThrough } = calculateTime(raceStartTime.current, raceEndTime.current);
       setRemainingTime(remainingTime);
       setTimeThrough(timeThrough);
     };
 
-    updateClockAndTime(); // Initialize immediately
+    updateClockAndTime(); 
 
     const interval = setInterval(updateClockAndTime, 1000);
     return () => clearInterval(interval);
-  }, []); // Empty dependency array to ensure this effect runs only once
+  }, []); 
 
   return (
     <ThemeProvider theme={theme}>
@@ -81,7 +81,7 @@ function App() {
             Pit Ops
           </Typography>
           <Typography variant="h6" gutterBottom>
-            Current Time: {currentTime}
+            Current Time: {currentTime.toLocaleTimeString()}
           </Typography>
           <Typography variant="h6" gutterBottom>
             Remaining Time: {remainingTime.hours}h {remainingTime.minutes}m {remainingTime.seconds}s
@@ -95,11 +95,11 @@ function App() {
           Race Snapshot
         </Typography>
 
-        <CurrentStatus />
+        <CurrentStatus  currentStatus={data[`${String(currentTime.getHours()).padStart(2, '0')}:${String(currentTime.getMinutes()).padStart(2, '0')}`]}/>
         <Typography variant="h5" gutterBottom>
-          Pit Stoppin In
+          Pit Stopping In
         </Typography>
-        <RaceTrack />
+        <RaceTrack pitStopTimes={data}/>
 
         <PitStopGraph pitStopTimes={data} />
       </Container>

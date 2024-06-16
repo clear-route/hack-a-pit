@@ -1,17 +1,16 @@
 import React, { useEffect, useState } from 'react';
 import { Box, Typography } from '@mui/material';
-import data from '../data/data';
 
-const CurrentStatus = () => {
-  const [currentTime, setCurrentTime] = useState('');
-  const [currentStatus, setCurrentStatus] = useState({});
+const CurrentStatus = ({currentStatus}) => {
+  // const [currentTime, setCurrentTime] = useState('');
+  // const [currentStatus, setCurrentStatus] = useState({});
 
-  useEffect(() => {
-    const times = Object.keys(data);
-    const latestTime = times[0];
-    setCurrentTime(latestTime);
-    setCurrentStatus(data[latestTime]);
-  }, [data]);
+  // useEffect(() => {
+  //   const times = Object.keys(data);
+  //   const latestTime = times[0];
+  //   setCurrentTime(latestTime);
+  //   setCurrentStatus(data[latestTime]);
+  // }, [data]);
 
   return (
     <Box
@@ -42,7 +41,7 @@ const CurrentStatus = () => {
             <Typography variant="body2">Fuel Remaining: {currentStatus.fuelRemaining}%</Typography>
             <Typography variant="body2">Tire Health: {currentStatus.tireWear}%</Typography>
             <Typography variant="body2">Engine Temperature: {currentStatus.engineTemperature}%</Typography>
-            <Typography variant="body2">Average Miles Per Gallon: {currentStatus.milesPerGallon}%</Typography>
+            <Typography variant="body2">Average Miles Per Gallon: {currentStatus.milesPerGallon}</Typography>
 
             {currentStatus.shouldPitStop && (
               <Typography variant="body2" color="error">
