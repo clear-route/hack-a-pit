@@ -24,8 +24,14 @@ let driver2 = new Driver("Driver 2", maxHoursPerDriver);
 let driver3 = new Driver("Driver 3", maxHoursPerDriver);
 let driver4 = new Driver("Driver 4", maxHoursPerDriver);
 
+let currentDriver = driver1;
+
 // setCars
-let car1 = new Car("Car 1", [driver1, driver2, driver3, driver4], driver1);
+let car1 = new Car(
+  "Car 1",
+  [driver1, driver2, driver3, driver4],
+  currentDriver
+);
 
 // Migth delete this
 car1.setLastServiceTimestamp();
@@ -52,13 +58,3 @@ car1.setLastServiceTimestamp();
 // Set the health left
 
 // Upon
-
-//Change of Driver will happen because either the driver has reached the maxHoursPerDriver or has ran out of Health
-// previousDriver: Driver;
-
-// public changeDriver(currentDriver: Driver, driversList: Driver[]): Driver {
-//   previousDriver = previousDriver == undefined ? currentDriver : previousDriver;
-//   let index = driversList.indexOf(currentDriver);
-//   let nextDriver = Math.max(driversList[index + 1];
-//   return nextDriver;
-// }
