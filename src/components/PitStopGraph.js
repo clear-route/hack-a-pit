@@ -4,72 +4,85 @@ import { Chart, registerables } from 'chart.js';
 
 Chart.register(...registerables);
 
-const PitStopGraph = ({pitStopTimes} ) => {
-  const labels = Array.from({ length: 24 }, (_, i) => `${i}:00`);
+const PitStopGraph = ({ pitStopTimes }) => {
+  const times = Object.keys(pitStopTimes);
+  const labels = times.map(time => time);
 
-  const filteredPitStopTimes = Object.keys(pitStopTimes).filter(time => pitStopTimes[time].shouldPitStop);
+  const lapData = times.map(time => pitStopTimes[time].lap);
+  const trackTemperatureData = times.map(time => pitStopTimes[time].trackTemperature);
+  const fuelRemainingData = times.map(time => pitStopTimes[time].fuelRemaining);
+  const tireWearData = times.map(time => pitStopTimes[time].tireWear);
+  const engineTemperatureData = times.map(time => pitStopTimes[time].engineTemperature);
+  const fuelWeightData = times.map(time => pitStopTimes[time].fuelWeight);
+  const driverTirednessData = times.map(time => pitStopTimes[time].driverTiredness);
 
   const chartData = {
     labels,
     datasets: [
       {
-        label: 'Pit Stop Times',
-        data: Array(24).fill(0),
-        borderColor: 'transparent', // Make the dataset line transparent
-        borderWidth: 3,
-        pointRadius: 0,
-        fill: true,
-        stepped: true,
+        label: 'Lap',
+        data: lapData,
+        borderColor: 'blue',
+        fill: false,
+      },
+      {
+        label: 'Track Temperature (°C)',
+        data: trackTemperatureData,
+        borderColor: 'red',
+        fill: false,
+      },
+      {
+        label: 'Fuel Remaining (%)',
+        data: fuelRemainingData,
+        borderColor: 'green',
+        fill: false,
+      },
+      {
+        label: 'Tire Wear (%)',
+        data: tireWearData,
+        borderColor: 'orange',
+        fill: false,
+      },
+      {
+        label: 'Engine Temperature (°C)',
+        data: engineTemperatureData,
+        borderColor: 'purple',
+        fill: false,
+      },
+      {
+        label: 'Fuel Weight (kg)',
+        data: fuelWeightData,
+        borderColor: 'brown',
+        fill: false,
+      },
+      {
+        label: 'Driver Tiredness (%)',
+        data: driverTirednessData,
+        borderColor: 'pink',
+        fill: false,
       },
     ],
   };
-
-  const annotations = filteredPitStopTimes.map(time => {
-    const [hour, minute] = time.split(':').map(Number);
-    const value = hour + (minute / 60);
-
-    // console.log(hour, hour)
-    return {
-      type: 'line',
-      mode: 'vertical',
-      scaleID: 'x',
-      value,
-      borderColor: 'red',
-      borderWidth: 2,
-      label: {
-        content: 'Pit Stop',
-        enabled: true,
-        position: 'top'
-      }
-    };
-  });
 
   const options = {
     scales: {
       x: {
         title: {
           display: true,
-          text: 'Time (Hours)',
+          text: 'Time',
         },
       },
       y: {
-        ticks: {
-          display: false,
-        },
         title: {
           display: true,
-          text: 'Pit Stops',
+          text: 'Value',
         },
         beginAtZero: true,
-        max: 1,
       },
     },
     plugins: {
       legend: {
-        display: false,
-      },
-      annotation: {
-        annotations,
+        display: true,
       },
     },
   };
