@@ -23,13 +23,21 @@ const theme = createTheme({
   },
 });
 
+
+const calculateRemainingTime = (endTime) => {
+  const now = new Date();
+  const timeDiff = endTime - now;
+  const hours = Math.floor((timeDiff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+  const minutes = Math.floor((timeDiff % (1000 * 60 * 60)) / (1000 * 60));
+  const seconds = Math.floor((timeDiff % (1000 * 60)) / 1000);
+  return { hours, minutes, seconds };
+};
+
+
 function App() {
   const [currentTime, setCurrentTime] = useState('');
-  const [currentStatus, setCurrentStatus] = useState({});
-
-  const handleTimeHover = (time) => {
-    setCurrentTime(time);
-  };
+  const [remainingTime, setRemainingTime] = useState({ hours: 24, minutes: 0, seconds: 0 });
+  const raceEndTime = new Date(Date.now() + 24 * 60 * 60 * 1000); // 24 hours from now
 
   // Update the real-time clock
   useEffect(() => {
@@ -37,6 +45,9 @@ function App() {
       const now = new Date();
       setCurrentTime(now.toLocaleTimeString());
     };
+
+    setRemainingTime(calculateRemainingTime(raceEndTime));
+
     const interval = setInterval(updateClock, 1000);
     return () => clearInterval(interval);
   }, []);
@@ -59,6 +70,10 @@ function App() {
         </Typography>
         <Typography variant="h6" gutterBottom>
           Time: {currentTime}
+        </Typography>
+
+        <Typography variant="h6" gutterBottom>
+              Remaining Time: {remainingTime.hours}h {remainingTime.minutes}m {remainingTime.seconds}s
         </Typography>
       </Box>
       <CurrentStatus/>

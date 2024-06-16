@@ -41,6 +41,9 @@ const CurrentStatus = () => {
 
             <Typography variant="body2">Fuel Remaining: {currentStatus.fuelRemaining}%</Typography>
             <Typography variant="body2">Tire Health: {currentStatus.tireWear}%</Typography>
+            <Typography variant="body2">Engine Temperature: {currentStatus.engineTemperature}%</Typography>
+            <Typography variant="body2">Average Miles Per Gallon: {currentStatus.milesPerGallon}%</Typography>
+
             {currentStatus.shouldPitStop && (
               <Typography variant="body2" color="error">
                 Should Pit Stop: Yes
@@ -55,7 +58,7 @@ const CurrentStatus = () => {
             <Typography variant="h6">Driver Overview</Typography>
 
             <Typography variant="body2">Driver Stint Minutes: {currentStatus.stintMinutes}</Typography>
-            <Typography variant="body2">Driver Health : {currentStatus.tireWear}%</Typography>
+            <Typography variant="body2">Driver Tiredness : {currentStatus.driverTiredness}%</Typography>
             {currentStatus.shouldPitStop && (
               <Typography variant="body2" color="error">
                 Should Pit Stop: Yes
