@@ -113,6 +113,8 @@ const PitStopGraph = ({ pitStopTimes, currentTime }) => {
     plugins: {
       legend: {
         display: true,
+        position: 'bottom', // Position the legend below the graph
+
       },
       annotation: {
         annotations,
