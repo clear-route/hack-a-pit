@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useRef, useEffect} from "react";
 import PitStop from "./PitStop";
 import {
   Box,
@@ -21,6 +21,20 @@ import "../css/RaceTrack.css";
 
 
 const RaceTrack = () => {
+        const currentTime = new Date();
+        const timeKey = `${currentTime.getHours().toString().padStart(2, '0')}:${currentTime.getMinutes().toString().padStart(2, '0')}`;
+        const refs = useRef([]);
+        const timestamps = Object.keys(data)
+        const index = timestamps.findIndex((time) => time === timeKey);
+
+        useEffect(() => {
+            if (refs.current[index]) {
+                refs.current[index].scrollIntoView({
+                    behavior: 'smooth',
+                    inline: 'start',
+                });
+            }
+        }, [refs, index]);
   return (
     <Box
     sx={{
@@ -35,7 +49,7 @@ const RaceTrack = () => {
     >
       <Grid container spacing={2} sx={{ overflowX: 'auto', flexWrap: 'nowrap' }}>
         {Object.keys(data).map((time, index) => (
-          <Grid item key={index}>
+          <Grid item key={index} ref={ref => refs.current[index] = ref}>
             <Tooltip
               title={
                 <Box>
