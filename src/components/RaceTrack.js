@@ -1,17 +1,7 @@
-import React, { useState, useRef, useEffect} from "react";
-import PitStop from "./PitStop";
+import React, {useRef, useEffect} from "react";
 import {
     Box,
-    Paper,
     Typography,
-    Table,
-    TableBody,
-    TableCell,
-    TableContainer,
-    TableHead,
-    TableRow,
-    Card,
-    CardContent,
     Grid,
     Tooltip
 } from "@mui/material";
@@ -44,8 +34,8 @@ const RaceTrack = () => {
                 padding: 2,
                 border: '1px solid #ccc',
                 borderRadius: 2,
-                marginX: 2, // This ensures equal margin on both sides
-                paddingY: 1, // Padding to ensure content does not touch the borders
+                marginX: 0, // This ensures equal margin on both sides
+                paddingY: 3, // Padding to ensure content does not touch the borders
             }}
         >
             <Grid container spacing={2} sx={{ overflowX: 'auto', flexWrap: 'nowrap' }}>

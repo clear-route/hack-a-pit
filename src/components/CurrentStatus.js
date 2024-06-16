@@ -1,16 +1,7 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { Box, Typography } from '@mui/material';
 
 const CurrentStatus = ({currentStatus}) => {
-  // const [currentTime, setCurrentTime] = useState('');
-  // const [currentStatus, setCurrentStatus] = useState({});
-
-  // useEffect(() => {
-  //   const times = Object.keys(data);
-  //   const latestTime = times[0];
-  //   setCurrentTime(latestTime);
-  //   setCurrentStatus(data[latestTime]);
-  // }, [data]);
 
   return (
     <Box

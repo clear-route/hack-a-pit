@@ -100,8 +100,8 @@ function App() {
           Pit Stopping In
         </Typography>
         <RaceTrack pitStopTimes={data} />
-
-        <PitStopGraph pitStopTimes={data} />
+        <Typography variant="h5" gutterBottom />
+        <PitStopGraph currentTime={currentTime} pitStopTimes={data} />
       </Container>
     </ThemeProvider>
   );
