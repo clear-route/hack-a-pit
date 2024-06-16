@@ -1,15 +1,15 @@
 {
   "files": {
     "main.css": "/hack-a-pit/static/css/main.a62f37ba.css",
-    "main.js": "/hack-a-pit/static/js/main.cb295dc7.js",
+    "main.js": "/hack-a-pit/static/js/main.0039b4cb.js",
     "static/js/453.76336a17.chunk.js": "/hack-a-pit/static/js/453.76336a17.chunk.js",
     "index.html": "/hack-a-pit/index.html",
     "main.a62f37ba.css.map": "/hack-a-pit/static/css/main.a62f37ba.css.map",
-    "main.cb295dc7.js.map": "/hack-a-pit/static/js/main.cb295dc7.js.map",
+    "main.0039b4cb.js.map": "/hack-a-pit/static/js/main.0039b4cb.js.map",
     "453.76336a17.chunk.js.map": "/hack-a-pit/static/js/453.76336a17.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.a62f37ba.css",
-    "static/js/main.cb295dc7.js"
+    "static/js/main.0039b4cb.js"
   ]
 }
