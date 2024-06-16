@@ -21,6 +21,7 @@ import "../css/RaceTrack.css";
 
 
 const RaceTrack = () => {
+
     const currentTime = new Date();
     const timeKey = `${currentTime.getHours().toString().padStart(2, '0')}:${currentTime.getMinutes().toString().padStart(2, '0')}`;
     const refs = useRef([]);
