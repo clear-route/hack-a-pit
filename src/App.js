@@ -69,15 +69,24 @@ function App() {
           Pit Ops
         </Typography>
         <Typography variant="h6" gutterBottom>
-          Time: {currentTime}
+          Current Time: {currentTime}
         </Typography>
 
         <Typography variant="h6" gutterBottom>
               Remaining Time: {remainingTime.hours}h {remainingTime.minutes}m {remainingTime.seconds}s
         </Typography>
       </Box>
+     
+      <Typography variant="h5" gutterBottom>
+        Race Snapshot
+        </Typography>
+
       <CurrentStatus/>
+      <Typography variant="h5" gutterBottom>
+        Pit Stoppin In
+        </Typography>
       <RaceTrack />
+
     </Container>
     </ThemeProvider>
   );
