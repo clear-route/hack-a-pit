@@ -1,0 +1,53 @@
+.pit-stop-container {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+}
+
+.pit-stop-hover-area {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 20px; /* Adjust width as needed for sensitivity */
+}
+
+.pit-stop-line {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  width: 2px;
+  background-color: red; /* Change the color as needed */
+}
+
+.pit-stop {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translate(-50%, -100%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 10px;
+  background-color: #1976d2; /* MUI primary color */
+  color: white;
+  border-radius: 10px;
+  opacity: 0;
+  transition: opacity 0.5s ease-in-out;
+}
+
+.pit-stop.show {
+  display: flex;
+}
+
+.pit-stop.hover {
+  opacity: 1;
+}
+
+.pit-stop-type,
+.pit-stop-time,
+.avg-lap-time {
+  color: white;
+}
