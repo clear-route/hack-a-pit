@@ -59,11 +59,11 @@ function App() {
       setTimeThrough(timeThrough);
     };
 
-    updateClockAndTime(); 
+    updateClockAndTime();
 
     const interval = setInterval(updateClockAndTime, 1000);
     return () => clearInterval(interval);
-  }, []); 
+  }, []);
 
   return (
     <ThemeProvider theme={theme}>
@@ -95,11 +95,11 @@ function App() {
           Race Snapshot
         </Typography>
 
-        <CurrentStatus  currentStatus={data[`${String(currentTime.getHours()).padStart(2, '0')}:${String(currentTime.getMinutes()).padStart(2, '0')}`]}/>
+        <CurrentStatus currentStatus={data[`${String(currentTime.getHours()).padStart(2, '0')}:${String(currentTime.getMinutes()).padStart(2, '0')}`]} />
         <Typography variant="h5" gutterBottom>
           Pit Stopping In
         </Typography>
-        <RaceTrack pitStopTimes={data}/>
+        <RaceTrack pitStopTimes={data} />
 
         <PitStopGraph pitStopTimes={data} />
       </Container>
