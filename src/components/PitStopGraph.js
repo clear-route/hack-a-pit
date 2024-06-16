@@ -2,7 +2,10 @@ import React from 'react';
 import { Line } from 'react-chartjs-2';
 import { Chart, registerables } from 'chart.js';
 import annotationPlugin from 'chartjs-plugin-annotation';
-
+import {
+  Box,
+ 
+} from "@mui/material";
 Chart.register(...registerables, annotationPlugin);
 
 const PitStopGraph = ({ pitStopTimes, currentTime }) => {
@@ -123,7 +126,21 @@ const PitStopGraph = ({ pitStopTimes, currentTime }) => {
     },
   };
 
-  return <Line data={chartData} options={options} />;
+  return (
+    <Box
+      sx={{
+        display: 'flex',
+        overflowX: 'scroll',
+        padding: 2,
+        border: '1px solid #ccc',
+        borderRadius: 2,
+        marginX: 0, 
+        paddingY: 5, 
+      }}
+    >
+      <Line data={chartData} options={options} />
+    </Box>
+  )
 };
 
 export default PitStopGraph;
