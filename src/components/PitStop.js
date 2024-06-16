@@ -27,7 +27,7 @@ const PitStop = ({ pitStop, onDragStop, trackWidth }) => {
 
   useEffect(() => {
     return () => clearTimeout(hoverTimeout);
-  }, []);
+  }, [hoverTimeout]);
 
   return (
     <Rnd

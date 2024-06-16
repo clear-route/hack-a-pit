@@ -1,6 +1,5 @@
 function generateRaceData(data) {
   const newData = {};
-  const timeFormat = 'HH:mm';
 
   const formatTime = (date) => {
     const hours = date.getHours().toString().padStart(2, '0');

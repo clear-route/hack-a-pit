@@ -1,17 +1,7 @@
-import React, { useState, useRef, useEffect} from "react";
-import PitStop from "./PitStop";
+import React, {useRef, useEffect} from "react";
 import {
     Box,
-    Paper,
     Typography,
-    Table,
-    TableBody,
-    TableCell,
-    TableContainer,
-    TableHead,
-    TableRow,
-    Card,
-    CardContent,
     Grid,
     Tooltip
 } from "@mui/material";
