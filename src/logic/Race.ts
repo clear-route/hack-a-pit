@@ -10,7 +10,8 @@ export class Race {
   private constructor(
     private name: string,
     private maxHoursPerDriver: number,
-    private maxNumberOfChangedTyres: number
+    private maxNumberOfChangedTyres: number,
+    private raceDurationinMinutes: number
   ) {
     this.name = name;
     this.maxHoursPerDriver = maxHoursPerDriver;
@@ -21,13 +22,15 @@ export class Race {
   public static getInstance(
     name: string,
     maxHoursPerDriver: number,
-    maxNumberOfChangedTyres: number
+    maxNumberOfChangedTyres: number,
+    raceDurationinMinutes: number
   ): Race {
     if (!Race.instance) {
       Race.instance = new Race(
         name,
         maxHoursPerDriver,
-        maxNumberOfChangedTyres
+        maxNumberOfChangedTyres,
+        raceDurationinMinutes
       );
     }
     return Race.instance;
@@ -43,6 +46,10 @@ export class Race {
 
   public getmaxHoursPerDriver(): number {
     return this.maxHoursPerDriver;
+  }
+
+  public getRaceDurationinMinutes(): number {
+    return this.raceDurationinMinutes;
   }
 
   //   public calculateStintTime(
