@@ -3,7 +3,7 @@ import { Driver } from "./Driver";
 /* 
 Returns a new Driver for the car, updates all previous drivers' health.
 params: lastStintLength: number, currentDriver: Driver, driversList: Driver[]
-returns: Driver
+returns: Driver to be used next
  */
 export function swapDriver(
   lastStintLength: number,
