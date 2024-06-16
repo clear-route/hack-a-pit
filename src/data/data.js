@@ -8,7 +8,9 @@ function generateRaceData(data) {
     return `${hours}:${minutes}`;
   };
 
-  let currentTime = new Date();
+  const now = new Date();
+
+  let currentTime = new Date(now.getTime() - 30 * 60 * 1000);
 
   Object.keys(data).forEach((key) => {
     const newTime = formatTime(currentTime);
