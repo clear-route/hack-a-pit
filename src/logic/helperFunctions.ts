@@ -1,11 +1,13 @@
+import { Car } from "./Car";
 import { Driver } from "./Driver";
+import { Tyre } from "./Tyre";
 
 /* 
 Returns a new Driver for the car, updates all previous drivers' health.
 params: lastStintLength: number, currentDriver: Driver, driversList: Driver[]
 returns: Driver to be used next
  */
-export function swapDriver(
+function swapDriver(
   lastStintLength: number,
   currentDriver: Driver,
   driversList: Driver[]
@@ -22,3 +24,15 @@ export function swapDriver(
 
   return driverWithHighestHealth;
 }
+
+function burnFuel(lapsCount: number, fuelBurnRate: number, car: Car) {
+  car.burnFuelBy(lapsCount * fuelBurnRate);
+}
+
+function degradeTyres(lapsCount: number, tyreDegRate: number, tyreSet: Tyre[]) {
+  tyreSet.forEach((element) => {
+    element.reduceTyreHealthBy(lapsCount * tyreDegRate);
+  });
+}
+
+export { swapDriver, burnFuel, degradeTyres };
